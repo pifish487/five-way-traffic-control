@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>五岔路口交通管理系统</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div><p class="eyebrow">TRAFFIC CONTROL DEMO</p><h1>五岔路口交通管理系统</h1><p>13 条路线 · 冲突矩阵 · 动态信号相位</p></div>
+      <div class="signal"><span id="lightDot"></span><b id="stage">绿灯放行</b><small id="countdown">6 s</small></div>
+    </section>
+    <section class="dashboard">
+      <div class="map-card"><canvas id="junction" width="660" height="540" aria-label="五岔路口仿真图"></canvas><div class="legend"><i class="green"></i>当前放行　<i class="gray"></i>等待车辆　虚线表示行驶路线</div></div>
+      <div class="control-card">
+        <h2>控制面板</h2>
+        <p class="hint">点击路线，向该路线加入一辆车。</p>
+        <div id="routeButtons" class="route-buttons"></div>
+        <label class="auto"><input id="autoTraffic" type="checkbox" checked> 自动生成来车</label>
+        <button id="reset">重置仿真</button>
+        <div class="now"><span>当前绿灯相位</span><strong id="activeRoutes">正在计算…</strong></div>
+      </div>
+    </section>
+    <section class="bottom">
+      <div class="panel"><h2>13 条路线状态</h2><div id="routeTable"></div></div>
+      <div class="panel"><h2>控制日志</h2><ol id="log"></ol></div>
+      <div class="panel"><h2>算法说明</h2><p>候选路线按“排队车辆 × 10 + 等待秒数”排序；按顺序加入与已选路线均不冲突的路线，形成一个安全绿灯相位。</p><p>换相时依次执行黄灯、全红和绿灯，保证清空冲突区域。</p></div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
